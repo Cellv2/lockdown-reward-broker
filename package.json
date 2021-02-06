@@ -8,6 +8,9 @@
         "@testing-library/jest-dom": "^5.11.9",
         "@testing-library/react": "^11.2.5",
         "@testing-library/user-event": "^12.6.3",
+        "electron-devtools-installer": "^3.1.1",
+        "electron-is-dev": "^1.2.0",
+        "electron-reload": "^1.5.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-scripts": "4.0.2",
@@ -15,13 +18,15 @@
     },
     "scripts": {
         "postinstall": "electron-builder install-app-deps",
+        "build-electron": "tsc --project electron/tsconfig.json",
         "start-react": "react-scripts start",
         "start-electron": "ts-node --skip-project electron/connect-electron.ts",
         "watch-electron": "tsc --watch --project electron/tsconfig.json",
         "start": "nf start -p 3000",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "dist": "npm run build && npm run build-electron && electron-builder build -c.extraMetadata.main=build/electron/main.js"
     },
     "build": {
         "extends": null,
@@ -58,9 +63,6 @@
         "@types/react-dom": "^17.0.0",
         "electron": "^11.2.3",
         "electron-builder": "^22.9.1",
-        "electron-devtools-installer": "^3.1.1",
-        "electron-is-dev": "^1.2.0",
-        "electron-reload": "^1.5.0",
         "foreman": "^3.0.1",
         "nodemon": "^2.0.7",
         "ts-node": "^9.1.1",
