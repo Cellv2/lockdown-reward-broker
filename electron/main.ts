@@ -23,6 +23,7 @@ function createWindow() {
         win.loadURL(`file://${__dirname}/../index.html`);
     }
 
+    //@ts-ignore
     win.on("closed", () => (win = null));
 
     // Hot Reloading
