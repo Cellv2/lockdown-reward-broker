@@ -36,7 +36,7 @@ function createWindow() {
                 "..",
                 "node_modules",
                 ".bin",
-                "electron"
+                "electron" + (process.platform === "win32" ? ".cmd" : "")
             ),
             forceHardReset: true,
             hardResetMethod: "exit",

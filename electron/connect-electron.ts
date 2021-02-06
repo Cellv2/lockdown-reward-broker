@@ -21,6 +21,8 @@ const tryConnection = () => {
             startedElectron = true;
             console.log("starting electron");
 
+            // FIXME: Fix the child process not being killed on app exit
+            // perhaps save out the PID and kill it in main once done?
             childProcess.exec(
                 'nodemon --watch "build"  --exec "electron ." --inspect=5858',
                 {
