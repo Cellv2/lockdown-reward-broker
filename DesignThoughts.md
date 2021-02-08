@@ -2,7 +2,7 @@
 
 ## Pages
 
-#### Home Page
+### Home Page
 
 - Has an overview of each child's current funds
 - Has a 'Redeem Reward' button for each child, taking them to the list of rewards they can redeem
@@ -10,20 +10,20 @@
 - Has an 'Add Funds' button to allow the admin to access the AddFunds page
 - Has an 'Admin Page' button to access the admin page (this is password protected)
 
-#### AddFunds Page
+### AddFunds Page
 
 - Allows the admin to select a child, manually enter an amount of funds to add, then confirm the addition of funds
   - The addition of funds is protected by a password to prevent mischief
 - A log is written with the attempt, regardless of whether the password is correct. The log entry contains the:
   - Time, child, funds before, successful/unsuccessful attempt, funds after
 
-#### Rewards Page
+### Rewards Page
 
 - Allows the child which was selected from the home page to redeem rewards, which will in turn remove funds from their total
 - A log is written when a reward is successfully redeemed. This log entry contains the:
   - Time, child, funds before, redeemed reward, reward cost, funds after
 
-#### Admin Page
+### Admin Page
 
 - Allows the admin to:
   - View the current list of children
@@ -37,12 +37,12 @@
 
 ## UX Flow
 
-#### Check Funds
+### Check Funds
 
 - Open app
 - On the home page, a list of current funds per child will be visible
 
-#### Spend Funds
+### Spend Funds
 
 - Open app
 - On home page, click on 'Redeem Reward' button next to child
@@ -50,13 +50,13 @@
 - Click on confirmation prompt to make sure that you are redeeming the reward you wanted to
 - Automatically returned to home page with updated funds now displayed
 
-#### View Child Reward/Funds Log
+### View Child Reward/Funds Log
 
 - Open app
 - On home page, click the 'View Log' button next to child
 - This will bring up a modal with a list of log events
 
-#### Add Funds
+### Add Funds
 
 - Open app
 - On home page, click on 'Add Funds' button
@@ -66,7 +66,7 @@
 - Click an 'Add Funds' button
 - Enter password to complete the addition of funds
 
-#### Add Children
+### Add Children
 
 - Open app
 - On home page, click the 'Admin Area' button
@@ -74,7 +74,7 @@
 - Click on the 'Add Child' button
 - In the prompt, enter the name of the child to add, then click OK
 
-#### Add Additional Rewards
+### Add Additional Rewards
 
 - Open app
 - On home page, click the 'Admin Area' button
@@ -84,7 +84,7 @@
   - Reward name, reward cost, a list of checkboxes for each child which, if checked, will assign the reward to that child upon creation
 - Once the form is complete, click 'Save' to add the reward
 
-#### Update Reward
+### Update Reward
 
 - Open app
 - On home page, click the 'Admin Area' button
@@ -94,7 +94,7 @@
 - Once the form is complete, click 'Save' to update the reward
 
 
-#### Update Rewards Assigned Child
+### Update Rewards Assigned Child
 
 - There are two ways to do this:
   1) Update it on a reward by reward basis. This is done in the same way as the 'UPDATE REWARD' flow, by going into an individual record and updating the assigned child(ren)
@@ -106,7 +106,7 @@
 - Each table cell will have a checkbox, designating whether that child should have access to that reward. Uncheck/check as appropriate
 - Once the form is complete, click 'Save' to update the reward
 
-#### View Admin Log
+### View Admin Log
 
 - Open app
 - On home page, click the 'Admin Area' button
@@ -114,7 +114,7 @@
 - On the admin page, click the 'View Admin Log' button
 - This will bring up a modal with a list of log events
 
-#### View Global Log
+### View Global Log
 
 - Open app
 - On home page, click the 'Admin Area' button
@@ -122,6 +122,6 @@
 - On the admin page, click the 'View Global Log' button
 - This will bring up a modal with a list of log events
 
-### Additional Thoughts/Considerations
+## Additional Thoughts/Considerations
 
 - Take a backup of the current state/database on app startup, just in case anything goes wrong?
