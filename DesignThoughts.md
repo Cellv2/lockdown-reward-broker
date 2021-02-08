@@ -4,7 +4,7 @@
 
 #### Home Page
 
-- Has an overview of each child's current money
+- Has an overview of each child's current funds
 - Has a 'Redeem Reward' button for each child, taking them to the list of rewards they can redeem
 - Has a 'View Log' button for each child, bringing up a modal which shows past events for the child
 - Has an 'Add Funds' button to allow the admin to access the AddFunds page
