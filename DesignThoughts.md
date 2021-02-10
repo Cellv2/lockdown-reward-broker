@@ -93,7 +93,6 @@
 - A form with the current reward information will appear - update the reward information
 - Once the form is complete, click 'Save' to update the reward
 
-
 ### Update Rewards Assigned Child
 
 - There are two ways to do this:
