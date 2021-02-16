@@ -1,4 +1,4 @@
-import Store from "electron-store";
+import Store, { Schema } from "electron-store";
 
 const store = new Store();
 
@@ -25,35 +25,83 @@ const rewards = [
     },
 ];
 
-const beneficiaries = {
-    child1: {
-        currentFunds: 10,
-        purchaseHistory: [
-            {
-                timestamp: "thisisatimeIswear",
-                fundsBefore: 25,
-                redeemedReward: "magic",
-                rewardCost: 15,
-                fundsAfter: 10,
+// need to have a top level key ("data") due to electron-store
+const beneficiariesSchema: Schema<Record<string, unknown>> = {
+    data: {
+        type: "array",
+        items: {
+            type: "object",
+            properties: {
+                name: { type: "string" },
+                currentFunds: { type: "number" },
+                purchaseHistory: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            timestamp: { type: "string" },
+                            fundsBefore: { type: "number" },
+                            redeemedReward: { type: "string" },
+                            rewardCost: { type: "number" },
+                            fundsAfter: { type: "number" },
+                        },
+                    },
+                },
+                fundingHistory: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            timestamp: { type: "string" },
+                            wasAuthorized: { type: "boolean" },
+                            fundsBefore: { type: "number" },
+                            rewardCost: { type: "number" },
+                            fundsAfter: { type: "number" },
+                        },
+                    },
+                },
             },
-        ],
-        fundingHistory: [
-            {
-                timestamp: "thisisatimeIswear",
-                wasAuthorized: true,
-                fundsBefore: 0,
-                fundsAdded: 25,
-                fundsAfter: 25,
-            },
-            {
-                timestamp: "thisisatimeIswear",
-                wasAuthorized: false,
-                fundsBefore: 0,
-                fundsAdded: 1337,
-                fundsAfter: 0,
-            },
-        ],
+        },
     },
+};
+
+const beneficiariesStore = new Store({
+    name: "beneficiaries",
+    schema: beneficiariesSchema,
+});
+
+const beneficiaries = {
+    data: [
+        {
+            name: "child1",
+            currentFunds: 10,
+            purchaseHistory: [
+                {
+                    timestamp: "thisisatimeIswear",
+                    fundsBefore: 25,
+                    redeemedReward: "magic",
+                    rewardCost: 15,
+                    fundsAfter: 10,
+                },
+            ],
+            fundingHistory: [
+                {
+                    timestamp: "thisisatimeIswear",
+                    wasAuthorized: true,
+                    fundsBefore: 0,
+                    fundsAdded: 25,
+                    fundsAfter: 25,
+                },
+                {
+                    timestamp: "thisisatimeIswear",
+                    wasAuthorized: false,
+                    fundsBefore: 0,
+                    fundsAdded: 1337,
+                    fundsAfter: 0,
+                },
+            ],
+        },
+    ],
 };
 
 const accessLog = {
