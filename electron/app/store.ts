@@ -104,8 +104,19 @@ const beneficiaries = {
     ],
 };
 
+const accessLogSchema: Schema<Record<string, unknown>> = {
+    page: { type: "string" },
+    timestamp: { type: "string" },
+    wasAuthorized: { type: "boolean" },
+};
+
+const accessLogStore = new Store({
+    name: "accessLog",
+    schema: accessLogSchema,
+});
+
 const accessLog = {
     page: "Admin",
-    wasAuthorized: true,
     timestamp: "thisisatimeIswear",
+    wasAuthorized: true,
 };
