@@ -18,6 +18,24 @@ const store = new Store();
 const logSchema = {};
 const fundsSchema = {};
 
+const rewardsSchema: Schema<Record<string, unknown>> = {
+    data: {
+        type: "array",
+        items: {
+            type: "object",
+            properties: {
+                name: { type: "string" },
+                redeemCost: { type: "number" },
+            },
+        },
+    },
+};
+
+const rewardsStore = new Store({
+    name: "rewards",
+    schema: rewardsSchema,
+});
+
 const rewards = [
     {
         name: "magic",
