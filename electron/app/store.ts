@@ -1,5 +1,7 @@
 import Store, { Schema } from "electron-store";
 
+const createTestData: boolean = true;
+
 const store = new Store();
 
 // store.set("unicorn", "🦄");
@@ -36,7 +38,7 @@ const rewardsStore = new Store({
     schema: rewardsSchema,
 });
 
-const rewards = [
+const rewardsTestData = [
     {
         name: "magic",
         redeemCost: 15,
@@ -88,39 +90,37 @@ const beneficiariesStore = new Store({
     schema: beneficiariesSchema,
 });
 
-const beneficiaries = {
-    data: [
-        {
-            name: "child1",
-            currentFunds: 10,
-            purchaseHistory: [
-                {
-                    timestamp: "thisisatimeIswear",
-                    fundsBefore: 25,
-                    redeemedReward: "magic",
-                    rewardCost: 15,
-                    fundsAfter: 10,
-                },
-            ],
-            fundingHistory: [
-                {
-                    timestamp: "thisisatimeIswear",
-                    wasAuthorized: true,
-                    fundsBefore: 0,
-                    fundsAdded: 25,
-                    fundsAfter: 25,
-                },
-                {
-                    timestamp: "thisisatimeIswear",
-                    wasAuthorized: false,
-                    fundsBefore: 0,
-                    fundsAdded: 1337,
-                    fundsAfter: 0,
-                },
-            ],
-        },
-    ],
-};
+const beneficiariesTestData = [
+    {
+        name: "child1",
+        currentFunds: 10,
+        purchaseHistory: [
+            {
+                timestamp: "thisisatimeIswear",
+                fundsBefore: 25,
+                redeemedReward: "magic",
+                rewardCost: 15,
+                fundsAfter: 10,
+            },
+        ],
+        fundingHistory: [
+            {
+                timestamp: "thisisatimeIswear",
+                wasAuthorized: true,
+                fundsBefore: 0,
+                fundsAdded: 25,
+                fundsAfter: 25,
+            },
+            {
+                timestamp: "thisisatimeIswear",
+                wasAuthorized: false,
+                fundsBefore: 0,
+                fundsAdded: 1337,
+                fundsAfter: 0,
+            },
+        ],
+    },
+];
 
 const accessLogSchema: Schema<Record<string, unknown>> = {
     data: {
@@ -141,8 +141,21 @@ const accessLogStore = new Store({
     schema: accessLogSchema,
 });
 
-const accessLog = {
-    page: "Admin",
-    timestamp: "thisisatimeIswear",
-    wasAuthorized: true,
-};
+const accessLogTestData = [
+    {
+        page: "Admin",
+        timestamp: "thisisatimeIswear",
+        wasAuthorized: true,
+    },
+];
+
+if (createTestData) {
+    rewardsStore.clear();
+    rewardsStore.set("data", rewardsTestData);
+
+    beneficiariesStore.clear();
+    beneficiariesStore.set("data", beneficiariesTestData);
+
+    accessLogStore.clear();
+    accessLogStore.set("data", accessLogTestData);
+}
