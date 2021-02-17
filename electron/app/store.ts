@@ -37,7 +37,7 @@ const beneficiariesStore = new Store({
 });
 
 const accessLogStore = new Store({
-    name: "accessLog",
+    name: "access-log",
     schema: accessLogSchema,
 });
 
