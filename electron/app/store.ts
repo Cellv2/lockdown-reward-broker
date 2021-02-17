@@ -1,5 +1,10 @@
-import Store, { Schema } from "electron-store";
+import Store from "electron-store";
 
+import {
+    accessLogSchema,
+    beneficiariesSchema,
+    rewardsSchema,
+} from "./store.schemas";
 import accessLogFixture from "./__tests__/access-log.fixture.json";
 import beneficiariesFixture from "./__tests__/beneficiaries.fixture.json";
 import rewardsFixture from "./__tests__/rewards.fixture.json";
@@ -21,82 +26,15 @@ const createTestData: boolean = true;
 // console.log(store.get("unicorn"));
 // //=> undefined
 
-const rewardsSchema: Schema<Record<string, unknown>> = {
-    data: {
-        type: "array",
-        items: {
-            type: "object",
-            properties: {
-                name: { type: "string" },
-                redeemCost: { type: "number" },
-            },
-        },
-    },
-};
-
 const rewardsStore = new Store({
     name: "rewards",
     schema: rewardsSchema,
 });
 
-// need to have a top level key ("data") due to electron-store
-const beneficiariesSchema: Schema<Record<string, unknown>> = {
-    data: {
-        type: "array",
-        items: {
-            type: "object",
-            properties: {
-                name: { type: "string" },
-                currentFunds: { type: "number" },
-                purchaseHistory: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        properties: {
-                            timestamp: { type: "string" },
-                            fundsBefore: { type: "number" },
-                            redeemedReward: { type: "string" },
-                            rewardCost: { type: "number" },
-                            fundsAfter: { type: "number" },
-                        },
-                    },
-                },
-                fundingHistory: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        properties: {
-                            timestamp: { type: "string" },
-                            wasAuthorized: { type: "boolean" },
-                            fundsBefore: { type: "number" },
-                            rewardCost: { type: "number" },
-                            fundsAfter: { type: "number" },
-                        },
-                    },
-                },
-            },
-        },
-    },
-};
-
 const beneficiariesStore = new Store({
     name: "beneficiaries",
     schema: beneficiariesSchema,
 });
-
-const accessLogSchema: Schema<Record<string, unknown>> = {
-    data: {
-        type: "array",
-        items: {
-            type: "object",
-            properties: {
-                page: { type: "string" },
-                timestamp: { type: "string" },
-                wasAuthorized: { type: "boolean" },
-            },
-        },
-    },
-};
 
 const accessLogStore = new Store({
     name: "accessLog",
