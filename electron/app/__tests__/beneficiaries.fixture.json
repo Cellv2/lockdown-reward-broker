@@ -1,0 +1,31 @@
+[
+    {
+        "name": "child1",
+        "currentFunds": 10,
+        "purchaseHistory": [
+            {
+                "timestamp": "thisisatimeIswear",
+                "fundsBefore": 25,
+                "redeemedReward": "magic",
+                "rewardCost": 15,
+                "fundsAfter": 10
+            }
+        ],
+        "fundingHistory": [
+            {
+                "timestamp": "thisisatimeIswear",
+                "wasAuthorized": true,
+                "fundsBefore": 0,
+                "fundsAdded": 25,
+                "fundsAfter": 25
+            },
+            {
+                "timestamp": "thisisatimeIswear",
+                "wasAuthorized": false,
+                "fundsBefore": 0,
+                "fundsAdded": 1337,
+                "fundsAfter": 0
+            }
+        ]
+    }
+]

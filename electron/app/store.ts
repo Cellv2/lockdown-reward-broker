@@ -1,8 +1,12 @@
 import Store, { Schema } from "electron-store";
 
+import accessLogFixture from "./__tests__/access-log.fixture.json";
+import beneficiariesFixture from "./__tests__/beneficiaries.fixture.json";
+import rewardsFixture from "./__tests__/rewards.fixture.json";
+
 const createTestData: boolean = true;
 
-const store = new Store();
+// const store = new Store();
 
 // store.set("unicorn", "🦄");
 // console.log(store.get("unicorn"));
@@ -16,9 +20,6 @@ const store = new Store();
 // store.delete("unicorn");
 // console.log(store.get("unicorn"));
 // //=> undefined
-
-const logSchema = {};
-const fundsSchema = {};
 
 const rewardsSchema: Schema<Record<string, unknown>> = {
     data: {
@@ -37,13 +38,6 @@ const rewardsStore = new Store({
     name: "rewards",
     schema: rewardsSchema,
 });
-
-const rewardsTestData = [
-    {
-        name: "magic",
-        redeemCost: 15,
-    },
-];
 
 // need to have a top level key ("data") due to electron-store
 const beneficiariesSchema: Schema<Record<string, unknown>> = {
@@ -90,38 +84,6 @@ const beneficiariesStore = new Store({
     schema: beneficiariesSchema,
 });
 
-const beneficiariesTestData = [
-    {
-        name: "child1",
-        currentFunds: 10,
-        purchaseHistory: [
-            {
-                timestamp: "thisisatimeIswear",
-                fundsBefore: 25,
-                redeemedReward: "magic",
-                rewardCost: 15,
-                fundsAfter: 10,
-            },
-        ],
-        fundingHistory: [
-            {
-                timestamp: "thisisatimeIswear",
-                wasAuthorized: true,
-                fundsBefore: 0,
-                fundsAdded: 25,
-                fundsAfter: 25,
-            },
-            {
-                timestamp: "thisisatimeIswear",
-                wasAuthorized: false,
-                fundsBefore: 0,
-                fundsAdded: 1337,
-                fundsAfter: 0,
-            },
-        ],
-    },
-];
-
 const accessLogSchema: Schema<Record<string, unknown>> = {
     data: {
         type: "array",
@@ -141,21 +103,13 @@ const accessLogStore = new Store({
     schema: accessLogSchema,
 });
 
-const accessLogTestData = [
-    {
-        page: "Admin",
-        timestamp: "thisisatimeIswear",
-        wasAuthorized: true,
-    },
-];
-
 if (createTestData) {
     rewardsStore.clear();
-    rewardsStore.set("data", rewardsTestData);
+    rewardsStore.set("data", rewardsFixture);
 
     beneficiariesStore.clear();
-    beneficiariesStore.set("data", beneficiariesTestData);
+    beneficiariesStore.set("data", beneficiariesFixture);
 
     accessLogStore.clear();
-    accessLogStore.set("data", accessLogTestData);
+    accessLogStore.set("data", accessLogFixture);
 }
