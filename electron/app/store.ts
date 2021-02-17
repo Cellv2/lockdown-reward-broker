@@ -123,9 +123,17 @@ const beneficiaries = {
 };
 
 const accessLogSchema: Schema<Record<string, unknown>> = {
-    page: { type: "string" },
-    timestamp: { type: "string" },
-    wasAuthorized: { type: "boolean" },
+    data: {
+        type: "array",
+        items: {
+            type: "object",
+            properties: {
+                page: { type: "string" },
+                timestamp: { type: "string" },
+                wasAuthorized: { type: "boolean" },
+            },
+        },
+    },
 };
 
 const accessLogStore = new Store({
