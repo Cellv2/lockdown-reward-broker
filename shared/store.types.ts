@@ -27,7 +27,7 @@ type PurchaseHistory = {
     fundsAfter: number;
 };
 
-type Reward = {
+export type Reward = {
     name: string;
     redeemCost: number;
 };
