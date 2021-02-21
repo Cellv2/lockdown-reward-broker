@@ -7,6 +7,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import electronRuntime from "./electronRuntime";
+import { Reward } from "../shared/store.types";
 
 const electronTestEvent = () => {
     console.log("button clicked");
@@ -16,6 +17,15 @@ const electronTestEvent = () => {
     // });
 
     electronRuntime.send("testChannel", message);
+};
+
+const testAddReward = () => {
+    const newReward: Reward = {
+        name: "Test Reward!",
+        redeemCost: 30,
+    };
+
+    electronRuntime.send("testAddReward", newReward);
 };
 
 function App() {
@@ -45,7 +55,7 @@ function App() {
                     >
                         Learn React
                     </a>
-                    <button onClick={electronTestEvent}>
+                    <button onClick={testAddReward}>
                         Click me for an Electron event
                     </button>
                 </header>

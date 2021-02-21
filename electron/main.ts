@@ -6,6 +6,8 @@ import installExtension, {
 } from "electron-devtools-installer";
 
 import "./app/store";
+import { Reward } from "../shared/store.types";
+import dbServiceSingleton from "./services/db.service";
 
 let win: BrowserWindow | null = null;
 
@@ -76,4 +78,9 @@ ipcMain.on("testChannel", async (event, message: string) => {
     console.log(message);
     console.log("testChannel");
     event.reply("hi there from electron!");
+});
+
+ipcMain.on("testAddReward", async (event, reward: Reward) => {
+    dbServiceSingleton.addReward(reward);
+    console.log("Reward was added");
 });

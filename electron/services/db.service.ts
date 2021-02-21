@@ -1,5 +1,5 @@
 import { dbStore } from "../app/store";
-import { DbStore } from "../app/store.types";
+import { DbStore, Reward } from "../../shared/store.types";
 
 interface DbServiceConstructor {
     new (): DbServiceInterface;
@@ -7,6 +7,7 @@ interface DbServiceConstructor {
 
 interface DbServiceInterface {
     getAllRewards: () => DbStore["rewards"];
+    addReward: (reward: Reward) => void;
 }
 
 /**
@@ -16,6 +17,10 @@ const dbService: DbServiceConstructor = class DbService
     implements DbServiceInterface {
     getAllRewards = () => {
         return dbStore.get("rewards");
+    };
+    addReward = (reward: Reward): void => {
+        const updatedRewards = [...this.getAllRewards(), reward];
+        dbStore.set("rewards", updatedRewards);
     };
 };
 

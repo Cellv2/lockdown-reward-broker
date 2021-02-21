@@ -5,8 +5,7 @@ type Listener = (...args: any[]) => void;
 
 contextBridge.exposeInMainWorld("electronRuntime", {
     send: (channel: string, data: any) => {
-        console.log("send was hit!")
-        let validChannels = ["testChannel"];
+        let validChannels = ["testChannel", "testAddReward"];
         if (validChannels.includes(channel)) {
             ipcRenderer.send(channel, data);
         }
