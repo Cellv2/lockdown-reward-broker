@@ -3,7 +3,7 @@
         "module": "commonjs",
         "noImplicitAny": true,
         "sourceMap": true,
-        "outDir": "../build/electron",
+        "outDir": "../build",
         "baseUrl": ".",
         "esModuleInterop": true,
         "resolveJsonModule": true,
@@ -11,7 +11,7 @@
     },
     "include": [
         ".",
-        "../src/types"
+        "../types"
     ],
     "exclude": [
         "node_modules"
