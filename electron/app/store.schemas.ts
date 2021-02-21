@@ -1,6 +1,8 @@
 import { Schema } from "electron-store";
+import { DbStore } from "./store.types";
 
-export const dbSchema: Schema<Record<string, unknown>> = {
+// export const dbSchema: Schema<Record<string, unknown>> = {
+export const dbSchema: Schema<DbStore> = {
     accessLog: {
         type: "array",
         items: {

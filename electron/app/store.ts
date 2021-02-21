@@ -1,9 +1,11 @@
 import Store from "electron-store";
-
 import { dbSchema } from "./store.schemas";
+import { DbStore } from "./store.types";
 import accessLogFixture from "./__tests__/access-log.fixture.json";
 import beneficiariesFixture from "./__tests__/beneficiaries.fixture.json";
 import rewardsFixture from "./__tests__/rewards.fixture.json";
+
+
 
 const createTestData: boolean = true;
 
@@ -22,7 +24,7 @@ const createTestData: boolean = true;
 // console.log(store.get("unicorn"));
 // //=> undefined
 
-const dbStore = new Store({
+export const dbStore = new Store<DbStore>({
     name: "db",
     schema: dbSchema,
 });
