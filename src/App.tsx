@@ -6,6 +6,18 @@ import RouterSwitch from "./routes/RouterSwitch";
 import logo from "./logo.svg";
 import "./App.css";
 
+import electronRuntime from "./electronRuntime";
+
+const electronTestEvent = () => {
+    console.log("button clicked");
+    const message = "this is the front end!";
+    // electronRuntime.subscribe("testChannel", (data) => {
+    //     console.log(data)
+    // });
+
+    electronRuntime.send("testChannel", message);
+};
+
 function App() {
     return (
         <HashRouter>
@@ -33,6 +45,9 @@ function App() {
                     >
                         Learn React
                     </a>
+                    <button onClick={electronTestEvent}>
+                        Click me for an Electron event
+                    </button>
                 </header>
             </div>
         </HashRouter>

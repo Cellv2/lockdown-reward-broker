@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import * as isDev from "electron-is-dev";
 import installExtension, {
@@ -14,7 +14,10 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
+            contextIsolation: true,
+            enableRemoteModule: false,
+            preload: path.join(__dirname, "preload.js"),
         },
     });
 
@@ -67,4 +70,10 @@ app.on("activate", () => {
     if (win === null) {
         createWindow();
     }
+});
+
+ipcMain.on("testChannel", async (event, message: string) => {
+    console.log(message);
+    console.log("testChannel");
+    event.reply("hi there from electron!");
 });
