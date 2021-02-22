@@ -7,7 +7,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import electronRuntime from "./electronRuntime";
-import { Reward } from "../shared/store.types";
+import { RewardWithoutId } from "../shared/store.types";
 
 const electronTestEvent = () => {
     console.log("button clicked");
@@ -20,7 +20,7 @@ const electronTestEvent = () => {
 };
 
 const testAddReward = () => {
-    const newReward: Reward = {
+    const newReward: RewardWithoutId = {
         name: "Test Reward!",
         redeemCost: 30,
     };

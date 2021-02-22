@@ -1,25 +1,26 @@
 import { dbStore } from "../app/store";
-import { DbStore, Reward } from "../../shared/store.types";
-
+import { DbStore, Reward, RewardWithoutId } from "../../shared/store.types";
+import { v4 as uuidv4 } from "uuid";
 interface DbServiceConstructor {
     new (): DbServiceInterface;
 }
 
 interface DbServiceInterface {
     getAllRewards: () => DbStore["rewards"];
-    addReward: (reward: Reward) => void;
+    addReward: (reward: RewardWithoutId) => void;
 }
 
 /**
- * An convenience abstraction over the electron-store methods to allow access to certain store elements via simple functions
+ * A convenience abstraction over the electron-store methods to allow access to certain store elements via simple functions
  */
 const dbService: DbServiceConstructor = class DbService
     implements DbServiceInterface {
     getAllRewards = () => {
         return dbStore.get("rewards");
     };
-    addReward = (reward: Reward): void => {
-        const updatedRewards = [...this.getAllRewards(), reward];
+    addReward = (reward: RewardWithoutId): void => {
+        const rewardWithId = { id: uuidv4(), ...reward };
+        const updatedRewards = [...this.getAllRewards(), rewardWithId];
         dbStore.set("rewards", updatedRewards);
     };
 };
