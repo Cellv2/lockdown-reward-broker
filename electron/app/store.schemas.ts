@@ -19,6 +19,7 @@ export const dbSchema: Schema<DbStore> = {
         items: {
             type: "object",
             properties: {
+                id: { type: "string" },
                 name: { type: "string" },
                 currentFunds: { type: "number" },
                 purchaseHistory: {
@@ -55,6 +56,7 @@ export const dbSchema: Schema<DbStore> = {
         items: {
             type: "object",
             properties: {
+                id: { type: "string" },
                 name: { type: "string" },
                 redeemCost: { type: "number" },
             },

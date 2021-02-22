@@ -5,6 +5,7 @@ type AccessLog = {
 };
 
 type Beneficary = {
+    id: string;
     name: string;
     currentFunds: string;
     purchaseHistory: PurchaseHistory[];
@@ -27,7 +28,14 @@ type PurchaseHistory = {
     fundsAfter: number;
 };
 
-export type Reward = {
+export type Reward = RewardWithoutId & {
+    id: string;
+};
+
+/**
+ * The ID is added electron side, so we trim out the ID from anything front end facing
+ */
+export type RewardWithoutId = {
     name: string;
     redeemCost: number;
 };
