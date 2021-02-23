@@ -7,7 +7,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import electronRuntime from "./electronRuntime";
-import { RewardWithoutId } from "../shared/store.types";
+import { createReward } from './shared/utils/db.factory'
 
 const electronTestEvent = () => {
     console.log("button clicked");
@@ -20,12 +20,11 @@ const electronTestEvent = () => {
 };
 
 const testAddReward = () => {
-    const newReward: RewardWithoutId = {
-        name: "Test Reward!",
-        redeemCost: 30,
-    };
+    const name = "Test Reward";
+    const cost = 30;
+    const reward = createReward(name, cost);
 
-    electronRuntime.send("testAddReward", newReward);
+    electronRuntime.send("testAddReward", reward);
 };
 
 function App() {

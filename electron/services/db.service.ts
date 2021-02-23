@@ -1,5 +1,5 @@
 import { dbStore } from "../app/store";
-import { DbStore, Reward, RewardWithoutId } from "../../shared/store.types";
+import { DbStore, Reward } from "../../src/shared/store.types";
 import { v4 as uuidv4 } from "uuid";
 interface DbServiceConstructor {
     new (): DbServiceInterface;
@@ -7,7 +7,8 @@ interface DbServiceConstructor {
 
 interface DbServiceInterface {
     getAllRewards: () => DbStore["rewards"];
-    addReward: (reward: RewardWithoutId) => void;
+    addReward: (reward: Reward) => void;
+    deleteReward: (rewardId: string) => void;
 }
 
 /**
@@ -15,13 +16,19 @@ interface DbServiceInterface {
  */
 const dbService: DbServiceConstructor = class DbService
     implements DbServiceInterface {
-    getAllRewards = () => {
+    getAllRewards = (): Reward[] => {
         return dbStore.get("rewards");
     };
-    addReward = (reward: RewardWithoutId): void => {
+    addReward = (reward: Reward): void => {
         const rewardWithId = { id: uuidv4(), ...reward };
         const updatedRewards = [...this.getAllRewards(), rewardWithId];
         dbStore.set("rewards", updatedRewards);
+    };
+    deleteReward = (rewardId: string): void => {
+        const rewardsToKeep = this.getAllRewards().filter(
+            (reward) => reward.id !== rewardId
+        );
+        dbStore.set("rewards", rewardsToKeep);
     };
 };
 

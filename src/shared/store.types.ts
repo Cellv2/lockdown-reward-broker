@@ -28,14 +28,8 @@ type PurchaseHistory = {
     fundsAfter: number;
 };
 
-export type Reward = RewardWithoutId & {
+export type Reward = {
     id: string;
-};
-
-/**
- * The ID is added electron side, so we trim out the ID from anything front end facing
- */
-export type RewardWithoutId = {
     name: string;
     redeemCost: number;
 };
