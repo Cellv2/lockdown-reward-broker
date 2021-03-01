@@ -4,7 +4,7 @@ type AccessLog = {
     wasAuthorized: boolean;
 };
 
-type Beneficary = {
+export type Beneficary = {
     id: string;
     name: string;
     currentFunds: string;
@@ -16,7 +16,7 @@ type FundingHistory = {
     timestamp: string;
     wasAuthorized: boolean;
     fundsBefore: number;
-    rewardCost: number;
+    fundsAdded: number;
     fundsAfter: number;
 };
 
