@@ -1,9 +1,10 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import { Beneficary } from "../../shared/store.types";
 
 type Props = {};
 
-const testData = [
+const testData: Beneficary[] = [
     {
         id: "6ce580d2-8955-43d4-828f-8651992f5db7",
         name: "child1",
@@ -36,12 +37,40 @@ const testData = [
     },
 ];
 
+const beneficiaryOverviewHeaderMappings = {
+    id: null,
+    name: "Name",
+    currentFunds: "Current Funds",
+    purchaseHistory: "Last Purchase",
+    fundingHistory: "Last Donation",
+};
+
+// TODO: Make this reusable (pass in the mapping object as well?)
+/**
+ * Maps keys from the database to a specific value used for the front end
+ * @param headerKey THe key to be searched for in the mappings object
+ * @returns A string to use for the front end if found, otherwise null
+ */
+const mapHeaderByKeys = (headerKey: keyof Beneficary): string | null => {
+    const mappingObjKeys = Object.keys(beneficiaryOverviewHeaderMappings);
+    if (mappingObjKeys.includes(headerKey)) {
+        return beneficiaryOverviewHeaderMappings[headerKey];
+    }
+
+    return null;
+};
+
 const BeneficiaryOverview = (props: Props) => {
     // name, currentFunds, purcahseHistory, fundingHistory
-    const tableHeaders = Object.keys(testData[0])
-        .filter((key) => key !== "id")
-        .map((key, index) => <th key={index}>{key}</th>);
-    console.log(Object.keys(testData));
+    const tableHeaders = Object.keys(testData[0]).map((key, index) => {
+        const typeCorrectedKey = key as keyof Beneficary;
+        const mappedKey = mapHeaderByKeys(typeCorrectedKey);
+        if (mappedKey !== null) {
+            return <th key={index}>{mappedKey}</th>;
+        }
+
+        return null;
+    });
 
     const tableBodyRows = testData.map((data, index) => {
         return (
