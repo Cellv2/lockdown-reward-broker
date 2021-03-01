@@ -43,9 +43,9 @@ const BeneficiaryOverview = (props: Props) => {
         .map((key, index) => <th key={index}>{key}</th>);
     console.log(Object.keys(testData));
 
-    const tableBodyRows = testData.map((data) => {
+    const tableBodyRows = testData.map((data, index) => {
         return (
-            <tr>
+            <tr key={index}>
                 <td>{data.name}</td>
                 <td>{data.currentFunds}</td>
                 <td>{data.purchaseHistory[0].redeemedReward}</td>
