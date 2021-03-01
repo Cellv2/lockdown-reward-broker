@@ -7,7 +7,7 @@ type AccessLog = {
 export type Beneficary = {
     id: string;
     name: string;
-    currentFunds: string;
+    currentFunds: number;
     purchaseHistory: PurchaseHistory[];
     fundingHistory: FundingHistory[];
 };
