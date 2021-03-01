@@ -1,10 +1,10 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import { Beneficary } from "../../shared/store.types";
+import { Beneficiary } from "../../shared/store.types";
 
 type Props = {};
 
-const testData: Beneficary[] = [
+const testData: Beneficiary[] = [
     {
         id: "6ce580d2-8955-43d4-828f-8651992f5db7",
         name: "child1",
@@ -51,7 +51,7 @@ const beneficiaryOverviewHeaderMappings = {
  * @param headerKey THe key to be searched for in the mappings object
  * @returns A string to use for the front end if found, otherwise null
  */
-const mapHeaderByKeys = (headerKey: keyof Beneficary): string | null => {
+const mapHeaderByKeys = (headerKey: keyof Beneficiary): string | null => {
     const mappingObjKeys = Object.keys(beneficiaryOverviewHeaderMappings);
     if (mappingObjKeys.includes(headerKey)) {
         return beneficiaryOverviewHeaderMappings[headerKey];
@@ -63,7 +63,7 @@ const mapHeaderByKeys = (headerKey: keyof Beneficary): string | null => {
 const BeneficiaryOverview = (props: Props) => {
     // name, currentFunds, purcahseHistory, fundingHistory
     const tableHeaders = Object.keys(testData[0]).map((key, index) => {
-        const typeCorrectedKey = key as keyof Beneficary;
+        const typeCorrectedKey = key as keyof Beneficiary;
         const mappedKey = mapHeaderByKeys(typeCorrectedKey);
         if (mappedKey !== null) {
             return <th key={index}>{mappedKey}</th>;

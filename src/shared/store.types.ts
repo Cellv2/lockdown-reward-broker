@@ -4,7 +4,7 @@ type AccessLog = {
     wasAuthorized: boolean;
 };
 
-export type Beneficary = {
+export type Beneficiary = {
     id: string;
     name: string;
     currentFunds: number;
@@ -36,6 +36,6 @@ export type Reward = {
 
 export type DbStore = {
     accessLog: AccessLog[];
-    beneficiaries: Beneficary[];
+    beneficiaries: Beneficiary[];
     rewards: Reward[];
 };
