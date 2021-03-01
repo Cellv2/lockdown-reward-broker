@@ -4,6 +4,8 @@ import { HashRouter, Link } from "react-router-dom";
 import RouterSwitch from "./routes/RouterSwitch";
 
 import logo from "./logo.svg";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 import electronRuntime from "./electronRuntime";
