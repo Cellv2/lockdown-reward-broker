@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import { Beneficiary } from "../../shared/store.types";
+import RedeemReward from "../buttons/RedeemReward";
 
 type Props = {};
 
@@ -79,6 +80,9 @@ const BeneficiaryOverview = (props: Props) => {
                 <td>{data.currentFunds}</td>
                 <td>{data.purchaseHistory[0].redeemedReward}</td>
                 <td>{data.fundingHistory[0].fundsAdded}</td>
+                <td>
+                    <RedeemReward />
+                </td>
             </tr>
         );
     });
