@@ -9,7 +9,9 @@ const Rewards = (props: Props) => {
         <div>
             This is the rewards page
             <br />
-            The current UserContext ID is {`${user}`}
+            {user !== undefined
+                ? `The current UserContext's user ID is ${user.id}`
+                : "No user currently set, how did you get here?!"}
         </div>
     );
 };

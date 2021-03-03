@@ -73,6 +73,7 @@ function App() {
         [setUser]
     );
 
+    // TODO: memoize the context value ?
     return (
         <HashRouter>
             <UserContext.Provider value={{ user, updateUser }}>

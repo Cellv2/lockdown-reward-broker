@@ -11,6 +11,7 @@ export const userContextDataDefaultValue: UserContextData = {
     updateUser: () => null,
 };
 
+// TODO: skip default creation with undefined ?
 const UserContext = createContext<UserContextData>(userContextDataDefaultValue);
 
 export default UserContext;
