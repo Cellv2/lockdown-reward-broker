@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { HashRouter, Link } from "react-router-dom";
 
 import RouterSwitch from "./routes/RouterSwitch";
@@ -11,6 +11,7 @@ import "./App.css";
 import electronRuntime from "./electronRuntime";
 import { createReward } from "./shared/utils/db.factory";
 import UserContext from "./app/UserContext";
+import { Beneficiary } from "./shared/store.types";
 
 const electronTestEvent = () => {
     console.log("button clicked");
@@ -31,9 +32,50 @@ const testAddReward = () => {
 };
 
 function App() {
+    const [user, setUser] = useState<Beneficiary | undefined>();
+
+    //TODO: make a call to the db service to extract the whole user based on the userId
+    const updateUser = useCallback(
+        (userId: string) => {
+            const testUser: Beneficiary = {
+                id: "6ce580d2-8955-43d4-828f-8651992f5db7",
+                name: "child1",
+                currentFunds: 10,
+                purchaseHistory: [
+                    {
+                        timestamp: "thisisatimeIswear",
+                        fundsBefore: 25,
+                        redeemedReward: "magic",
+                        rewardCost: 15,
+                        fundsAfter: 10,
+                    },
+                ],
+                fundingHistory: [
+                    {
+                        timestamp: "thisisatimeIswear",
+                        wasAuthorized: true,
+                        fundsBefore: 0,
+                        fundsAdded: 25,
+                        fundsAfter: 25,
+                    },
+                    {
+                        timestamp: "thisisatimeIswear",
+                        wasAuthorized: false,
+                        fundsBefore: 0,
+                        fundsAdded: 1337,
+                        fundsAfter: 0,
+                    },
+                ],
+                allowedRewards: ["40852072-c3b6-4533-ab9f-2f5716a70ad4"],
+            };
+            setUser(testUser);
+        },
+        [setUser]
+    );
+
     return (
         <HashRouter>
-            <UserContext.Provider value={"12345"}>
+            <UserContext.Provider value={{ user, updateUser }}>
                 <Link to="/">Home</Link>
                 <br />
                 <Link to="/admin">Admin</Link>

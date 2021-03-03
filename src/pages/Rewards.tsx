@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import UserContext from "../app/UserContext";
 
 type Props = {};
 
 const Rewards = (props: Props) => {
+    const { user } = useContext(UserContext);
     return (
-        <UserContext.Consumer>
-            {(user) => (
-                <div>
-                    This is the rewards page
-                    The current UserContext ID is {`${user}`}
-                </div>
-            )}
-        </UserContext.Consumer>
+        <div>
+            This is the rewards page
+            <br />
+            The current UserContext ID is {`${user}`}
+        </div>
     );
 };
 
