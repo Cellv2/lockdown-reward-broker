@@ -44,6 +44,7 @@ const beneficiaryOverviewHeaderMappings = {
     currentFunds: "Current Funds",
     purchaseHistory: "Last Purchase",
     fundingHistory: "Last Donation",
+    allowedRewards: null,
 };
 
 // TODO: Make this reusable (pass in the mapping object as well?)
