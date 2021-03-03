@@ -10,6 +10,7 @@ export type Beneficiary = {
     currentFunds: number;
     purchaseHistory: PurchaseHistory[];
     fundingHistory: FundingHistory[];
+    allowedRewards?: Reward["id"][];
 };
 
 type FundingHistory = {

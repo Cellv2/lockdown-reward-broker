@@ -27,6 +27,7 @@
                 "fundsAdded": 1337,
                 "fundsAfter": 0
             }
-        ]
+        ],
+        "allowedRewards": ["40852072-c3b6-4533-ab9f-2f5716a70ad4"]
     }
 ]
