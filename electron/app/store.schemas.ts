@@ -48,6 +48,10 @@ export const dbSchema: Schema<DbStore> = {
                         },
                     },
                 },
+                allowedRewards: {
+                    type: "array",
+                    items: { type: "string" },
+                },
             },
         },
     },
