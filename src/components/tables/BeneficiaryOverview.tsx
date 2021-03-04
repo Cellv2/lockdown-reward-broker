@@ -82,7 +82,7 @@ const BeneficiaryOverview = (props: Props) => {
                 <td>{data.purchaseHistory[0].redeemedReward}</td>
                 <td>{data.fundingHistory[0].fundsAdded}</td>
                 <td>
-                    <RedeemReward />
+                    <RedeemReward userId={data.id} />
                 </td>
             </tr>
         );

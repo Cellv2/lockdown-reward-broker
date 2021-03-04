@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import UserContext from "../../app/UserContext";
 
-type Props = {};
+type Props = {
+    userId: string;
+};
 
 const RedeemReward = (props: Props) => {
     const { updateUser } = useContext(UserContext);
@@ -13,7 +15,7 @@ const RedeemReward = (props: Props) => {
             <Button
                 variant="outline-primary"
                 block
-                onClick={() => updateUser("hardCoded_willbeignored")}
+                onClick={() => updateUser(props.userId)}
             >
                 Redeem Reward
             </Button>
