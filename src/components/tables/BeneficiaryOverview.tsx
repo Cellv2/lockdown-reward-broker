@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import { Beneficiary } from "../../shared/store.types";
-import RedeemReward from "../buttons/RedeemReward";
+import ToRedeemRewardPage from "../buttons/ToRedeemRewardPage";
 
 type Props = {};
 
@@ -82,7 +82,7 @@ const BeneficiaryOverview = (props: Props) => {
                 <td>{data.purchaseHistory[0].redeemedReward}</td>
                 <td>{data.fundingHistory[0].fundsAdded}</td>
                 <td>
-                    <RedeemReward userId={data.id} />
+                    <ToRedeemRewardPage userId={data.id} />
                 </td>
             </tr>
         );

@@ -1,25 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import UserContext from "../../app/UserContext";
+import { Reward } from "../../shared/store.types";
 
 type Props = {
-    userId: string;
+    reward: Reward;
 };
 
 const RedeemReward = (props: Props) => {
-    const { updateUser } = useContext(UserContext);
-
+    const { id, name, redeemCost } = props.reward;
     return (
-        <Link to="/rewards">
-            <Button
-                variant="outline-primary"
-                block
-                onClick={() => updateUser(props.userId)}
-            >
-                Redeem Reward
-            </Button>
-        </Link>
+        <Button
+            variant="outline-primary"
+            block
+            onClick={() => console.log(`clicked on ${id}`)}
+        >
+            Redeem {name} for {redeemCost}
+        </Button>
     );
 };
 
